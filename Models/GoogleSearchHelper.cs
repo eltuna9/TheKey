@@ -6,10 +6,7 @@ namespace TheKey.Models
 {
     public class GoogleSearchHelper : ISearchHelper
     {
-        private const string BLANK_SPACE = " ";
-        private const string PLUS_SIGN = "+";
         private const string BASE_SEARCH_URL = "https://www.google.com.au/search?q=";
-        private const string NUMBER_QUERY_PARAM = "&num=";
         private int numberOfResults;
         
         public GoogleSearchHelper()
@@ -25,8 +22,8 @@ namespace TheKey.Models
         private string buildSearchUrl(string keywords)
         {
             StringBuilder builtUrl = new StringBuilder(BASE_SEARCH_URL);
-            builtUrl.Append(keywords.Replace(BLANK_SPACE, PLUS_SIGN));
-            builtUrl.Append(NUMBER_QUERY_PARAM).Append(numberOfResults);
+            builtUrl.Append(keywords.Replace(" ", "+"));
+            builtUrl.Append("&num=").Append(numberOfResults);
             return builtUrl.ToString();
         }
 
@@ -36,8 +33,7 @@ namespace TheKey.Models
         /// <param name="result">A string representing an appearence html code</param>
         /// <returns>The title of the link in the search appearence.</returns>
         private string getAppearanceLinkTitle(string result) {
-            string title = string.Empty;
-            return title;
+            return Regex.Replace(result, @"<.*?>|</.*?>", string.Empty);
         }
 
         /// <summary>
@@ -51,8 +47,7 @@ namespace TheKey.Models
             List<SearchAppearence> appearencesList = new List<SearchAppearence>();
             string searchUrl = buildSearchUrl(keyWords);
             string htmlResponse = new RequestHelper().getHtmlFromUrl(searchUrl);
-            //<\s*h3[^>]*>.*(www.infotrack.com.au+?).*<\s*\/h3>
-            MatchCollection searchResults = Regex.Matches(htmlResponse, @"<\s*h3[^>]*>.*<\s*\/h3>");
+            MatchCollection searchResults = Regex.Matches(htmlResponse, @"<h3[^>]+?>(.*?)<\/h3>");
 
             for (int i = 0; i < searchResults.Count; i++)
             {
