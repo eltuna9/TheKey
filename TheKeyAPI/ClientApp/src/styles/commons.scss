@@ -22,10 +22,10 @@ $phone-width: 720px;
 }
 
 .body {
-  background-color: $smoke;
+  background-color: $white;
 }
 
-.html {
+html {
   color: $dark;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif !important;
 }

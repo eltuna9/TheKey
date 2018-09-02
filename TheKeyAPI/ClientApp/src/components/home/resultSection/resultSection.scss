@@ -1,0 +1,31 @@
+@import '../../../styles/commons.scss';
+.result-section__loader {
+  text-align: center !important;
+}
+
+.result-section__spiner {
+  margin-left: auto;
+}
+
+.result-section__description {
+  text-align: center;
+  padding: 0.5em;
+  @include mobile {
+    font-size: 12px;
+  }
+}
+
+.result-section__order-label {
+  font-size: 20px;
+}
+
+.result-section__wait-message {
+  font-size: 30px;
+  text-align: center;
+  @include tablet {
+    font-size: 22px;
+  }
+  @include mobile {
+    font-size: 15px;
+  }
+}

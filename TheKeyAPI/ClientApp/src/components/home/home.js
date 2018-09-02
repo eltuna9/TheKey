@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
-import {Col, Grid, Row} from 'react-bootstrap';
 import MainHeader from '../commons/mainHeader/mainHeader';
 import SearchForm from './searchForm/searchForm';
-
+import ResultSection from './resultSection/resultSection';
+import './home.scss';
 export class Home extends Component {
-  displayName = Home.name;
-
   render() {
     return (
-      <Grid fluid className="">
-        <Row className="home__header">
-          <MainHeader text="The Key - Your SEO tool." />
-        </Row>
-        <Row className="home__form-wrapper">
+      <React.Fragment>
+        <div className="container-fluid">
+          <div className="row home__header">
+            <MainHeader>The Key - Your SEO tool</MainHeader>
+          </div>
+        </div>
+        <div className="container-fluid home__form-wrapper">
           <SearchForm />
-        </Row>
-        <Row className="home__form-wrapper">
+        </div>
+        <div className="container-fluid">
           <ResultSection />
-        </Row>
-      </Grid>
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -6,9 +6,11 @@ using TheKey.Models;
 using System.Net;
 using System.Web;
 using TheKey.Utils;
+using System.Web.Http.Cors;
 
 namespace TheKey.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SearchController : ApiController
     {
         [HttpGet]

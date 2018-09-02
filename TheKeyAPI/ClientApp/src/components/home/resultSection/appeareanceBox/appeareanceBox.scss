@@ -1,0 +1,29 @@
+@import '../../../../styles/commons.scss';
+.appeareance-box {
+  border: 1px solid $smoke;
+  border-radius: 2px;
+  text-align: center;
+  margin: 0 auto 0.8em auto;
+  text-align: center;
+  box-shadow: -2px 2px 2px 0px #ededed;
+  width: 98%;
+}
+
+.appeareance-box__number {
+  font-size: 35px;
+  color: $orange;
+  font-weight: bold;
+  border-color: orange;
+  @include mobile {
+    font-size: 15px;
+  }
+}
+
+.appeareance-box__linkText {
+  padding: 1em;
+  font-size: 30px;
+  color: $dark;
+  @include mobile {
+    font-size: 12px;
+  }
+}

@@ -49,6 +49,8 @@ namespace TheKey.Models
         {
             MatchCollection searchResults = Regex.Matches(htmlToLookUp, REGEX_SEARCH_RESULT);
             List<SearchAppearence> appearencesList = new List<SearchAppearence>();
+            //To improve the search results, the protocol is deleted from the url.
+            string urlWithoutProtocol = Regex.Replace(url, @"/^.*:\/\//i", string.Empty);
             for (int i = 0; i < searchResults.Count; i++)
             {
                 string appearenceString = searchResults[i].Value;

@@ -1,0 +1,16 @@
+@import '../../styles/commons.scss';
+.home__header {
+  background-color: $dark;
+}
+
+.home__results-wrapper {
+  padding: 2em 0;
+  @include mobile {
+    padding: 1em;
+  }
+}
+
+.home__form-wrapper {
+  background-color: $smoke;
+  box-shadow: -8px 4px 6px #cbc5c5;
+}
