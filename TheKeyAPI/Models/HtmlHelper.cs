@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 namespace TheKey.Models
 {
     /// <summary>
-    /// Object responsabile of execute the http request.
+    /// Object responsible for the manipulation and obtainment of the html.
     /// </summary>
     public class HtmlHelper
     {
