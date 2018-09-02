@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKey", "TheKeyAPI\TheKey.csproj", "{4AB96605-B3C6-47E4-8299-9FF2701BB93E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheKeyTest", "TheKeyTest\TheKeyTest.csproj", "{A3E50D13-23B3-4586-8D00-21B94EEDF97C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4AB96605-B3C6-47E4-8299-9FF2701BB93E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB96605-B3C6-47E4-8299-9FF2701BB93E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB96605-B3C6-47E4-8299-9FF2701BB93E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3E50D13-23B3-4586-8D00-21B94EEDF97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3E50D13-23B3-4586-8D00-21B94EEDF97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3E50D13-23B3-4586-8D00-21B94EEDF97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3E50D13-23B3-4586-8D00-21B94EEDF97C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
