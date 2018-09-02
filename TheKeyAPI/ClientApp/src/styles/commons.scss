@@ -1,0 +1,31 @@
+@import './colors';
+@import url('https://fonts.googleapis.com/css?family=Lato');
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$phone-width: 720px;
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+.body {
+  background-color: $smoke;
+}
+
+.html {
+  color: $dark;
+  font-family: 'Lato', sans-serif;
+}
