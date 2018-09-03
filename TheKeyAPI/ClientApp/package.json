@@ -5,7 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
