@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "jest"
+    "start": "webpack-dev-server --config ./webpack.config.js --mode production",
+    "test": "jest",
+    "build": "webpack --config webpack.dist.config.js"
   },
   "keywords": [],
   "author": "",
