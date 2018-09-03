@@ -13,7 +13,7 @@ export class Home extends Component {
           </div>
         </div>
         <div className="container-fluid home__form-wrapper">
-          <SearchForm />
+          <SearchForm defaultUrl="www.infotrack.com.au" defaultKeyWords="online title search" />
         </div>
         <div className="container-fluid">
           <ResultSection />

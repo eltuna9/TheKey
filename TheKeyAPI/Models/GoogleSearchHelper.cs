@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace TheKey.Models
 {
@@ -32,11 +33,11 @@ namespace TheKey.Models
         /// <param name="url">The url to find in the Google search results</param>
         /// <param name="keyWords">The terms to be searched.</param>
         /// <returns>A list of SearchAppearence objects</returns>
-        public List<SearchAppearence> SearchUrlAppearences(string url, string keyWords)
+        public async Task<IEnumerable<SearchAppearence>> SearchUrlAppearences(string url, string keyWords)
         {            
             string searchUrl = BuildSearchUrl(keyWords);
             HtmlHelper htmlHelper = new HtmlHelper();
-            string htmlResponse = htmlHelper.GetHtmlFromUrl(searchUrl);            
+            string htmlResponse = await htmlHelper.GetHtmlFromUrl(searchUrl);            
             List<SearchAppearence> appearencesList = htmlHelper.GetUrlAppearencesInHtml(url, htmlResponse);
             return appearencesList;
         }      

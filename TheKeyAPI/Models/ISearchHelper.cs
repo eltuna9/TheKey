@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TheKey.Models
 {
     interface ISearchHelper
     {
-        List<SearchAppearence> SearchUrlAppearences(string url, string keyWords);
+        Task<IEnumerable<SearchAppearence>> SearchUrlAppearences(string url, string keyWords);
     }
 }
 

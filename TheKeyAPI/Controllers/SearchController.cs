@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using TheKey.Utils;
 using System.Web.Http.Cors;
+using System.Threading.Tasks;
 
 namespace TheKey.Controllers
 {
@@ -15,7 +16,7 @@ namespace TheKey.Controllers
     {
         [HttpGet]
         [Route("api/search/")]        
-        public HttpResponseMessage GetUrlAppeareances([FromUri]string url, [FromUri]string keyWords)
+        public async Task<IHttpActionResult> GetUrlAppeareances([FromUri]string url, [FromUri]string keyWords)
         {
             try
             {                
@@ -23,14 +24,14 @@ namespace TheKey.Controllers
                 string decodedKeywords = HttpUtility.UrlDecode(keyWords);
                 Logger.log.Info(String.Format("[{0}] Starting the searching for {1} | in the results for [{2}]", Request.GetCorrelationId(), url, keyWords));
                 ISearchHelper searchHelper = new GoogleSearchHelper();
-                IEnumerable<SearchAppearence> appearences = searchHelper.SearchUrlAppearences(decodedUrl, decodedKeywords);
+                var appearences = await searchHelper.SearchUrlAppearences(decodedUrl, decodedKeywords);
                 Logger.log.Info(String.Format("[{0}] Returning results for {1} | in the results for [{2}]", Request.GetCorrelationId(), url, keyWords));
-                return Request.CreateResponse(HttpStatusCode.OK, appearences);
+                return Ok(appearences);
             }
             catch (Exception ex)
             {
                 Logger.log.Error(String.Format("[{0}] Exception trying to get appeareances for {1} | in the results for [{2}] ", Request.GetCorrelationId(), url, keyWords), ex.InnerException);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+                return InternalServerError(ex);
             }
         }
     }

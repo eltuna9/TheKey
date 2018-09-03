@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace TheKey.Models
 {
@@ -18,24 +19,27 @@ namespace TheKey.Models
         /// </summary>
         /// <param name="url">The url to execute the http request.</param>
         /// <returns>The html response from the server, in a string format.</returns>
-        public string GetHtmlFromUrl(string url)
+        public async Task<string> GetHtmlFromUrl(string url)
         {            
             try
             {
                 string html = string.Empty;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
+                using (var response = await request.GetResponseAsync())
+                using (var stream = response.GetResponseStream())
+                    if(stream !=null )
+                        using (var reader = new StreamReader(stream))
+                        {
+                            return reader.ReadToEnd();
+                        }
             }
             catch (Exception ex)
             {
                 throw new Exception("An error has occured while trying to perform the search request.", ex);
             }
+
+            return string.Empty;
             
         }
 

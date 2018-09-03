@@ -14,7 +14,6 @@ class ResultSection extends Component {
     return (
       <div className="container">
         <div className="row result-section">
-          {this.verifyPendingStatus()}
           {this.state.results &&
             this.state.results.length > 0 && (
               <React.Fragment>
@@ -26,6 +25,8 @@ class ResultSection extends Component {
                 ))}
               </React.Fragment>
             )}
+          {this.verifyPendingStatus()}
+          {this.verifyError()}
           {this.verifyEmptyResults()}
         </div>
       </div>
@@ -34,13 +35,23 @@ class ResultSection extends Component {
 
   verifyPendingStatus() {
     return (
-      this.state.isPending && (
+      this.state.isPending && !this.state.hasError && (
         <div className="result-section__loader">
           <h2 className="result-section__wait-message">
             We are performing the search and counting for you. Please wait =)
           </h2>
           <Loader className="result-section__spiner" type="Rings" color="#ffa100" height={120} width={120} />
         </div>
+      )
+    );
+  }
+
+  verifyError() {
+    return (
+      this.state.hasError && !this.state.isPending && (
+          <h2 className="result-section__description">
+            An error has occured and we could not perfomr the search. Please try again later =(
+          </h2>
       )
     );
   }
@@ -59,20 +70,22 @@ class ResultSection extends Component {
   componentWillReceiveProps(newProps) {
     this.setState({
       results: newProps.searchResults,
-      isPending: newProps.isSearchPending
+      isPending: newProps.isSearchPending,
+      hasError: newProps.hasError
     });
-    console.log(newProps);
   }
 }
 
 const mapStateToProps = state => ({
   searchResults: state.search.searchResult,
-  isSearchPending: state.search.isSearchPending
+  isSearchPending: state.search.isSearchPending,
+  hasError: state.search.hasError
 });
 
 ResultSection.propTypes = {
   searchResults: PropTypes.object,
-  isSearchPending: PropTypes.bool
+  isSearchPending: PropTypes.bool,
+  hasError: PropTypes.bool
 };
 
 export default connect(mapStateToProps)(ResultSection);

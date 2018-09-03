@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as searchActions from '../../../actions/searchResultActionCreator';
 import {connect} from 'react-redux';
+import config from '../../../config/config';
 import axios from 'axios';
 import './searchForm.scss';
 
@@ -27,7 +28,7 @@ class SearchForm extends Component {
                 className="form-control"
                 onChange={this.handleInputChange.bind(this)}
                 type="text"
-                defaultValue="www.infotrack.com.au"
+                defaultValue={this.props.defaultUrl}
                 required
               />
             </div>
@@ -39,7 +40,7 @@ class SearchForm extends Component {
                 className="form-control"
                 onChange={this.handleInputChange.bind(this)}
                 type="text"
-                defaultValue="online title search"
+                defaultValue={this.props.defaultKeyWords}
                 required
               />
             </div>
@@ -67,13 +68,12 @@ class SearchForm extends Component {
     let keywords = encodeURI(this.state.keywords);
     this.setState({isPending: true}, this.props.setSearchPending.bind(null, true));
     axios
-      .get(`http://localhost:49489/api/search/?url=${url}&keywords=${keywords}`)
-      .then(response => {
-        this.props.setSearchResult(response.data);
-        this.setState({isPending: false}, this.props.setSearchPending.bind(null, false));
+      .get(`${config.serverUrl}/api/search/?url=${url}&keywords=${keywords}`)
+      .then(response => {        
+        this.setState({isPending: false}, this.props.setSearchResult.bind(null,response.data));
       })
       .catch(() => {
-        this.setState({errorInSearch: true, isPending: false});
+        this.setState({errorInSearch: true, isPending: false}, this.props.setSearchError.bind(null, true));
       });
   }
 }
@@ -82,12 +82,16 @@ const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
   setSearchResult: searchActions.setSearchResult,
-  setSearchPending: searchActions.setSearchPending
+  setSearchPending: searchActions.setSearchPending,
+  setSearchError: searchActions.setSearchError
 };
 
 SearchForm.proptypes = {
   setSearchResult: PropTypes.func,
-  setSearchPending: PropTypes.func
+  setSearchPending: PropTypes.func,
+  setSearchError: PropTypes.func,
+  defaultKeyWords: PropTypes.string,
+  defaultUrl: PropTypes.string
 };
 
 export default connect(
