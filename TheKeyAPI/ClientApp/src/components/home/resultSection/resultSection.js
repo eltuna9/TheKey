@@ -50,7 +50,7 @@ class ResultSection extends Component {
     return (
       this.state.hasError && !this.state.isPending && (
           <h2 className="result-section__description">
-            An error has occured and we could not perfomr the search. Please try again later =(
+            An error has occured and we could not perform the search. Please try again later =(
           </h2>
       )
     );
