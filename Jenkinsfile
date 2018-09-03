@@ -21,6 +21,8 @@ node {
     stage ("Build Client") {
 
         bat 'cd TheKeyAPI\\ClientApp && npm install'
+
+        bat 'cd TheKeyAPI\\ClientApp && npm run build'
         
     }
 }   
